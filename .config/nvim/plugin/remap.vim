@@ -13,7 +13,9 @@ let mapleader=' '
 " basic commands
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :x<cr>
-nnoremap <leader>c :q<cr>
+nnoremap <leader>q :q!<cr>
+nnoremap <leader>s :xa<cr>
+nnoremap <leader>l :qa!<cr>
 
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -22,5 +24,5 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " nvim tree
-noremap <leader>tt <cmd>NvimTreeToggle<cr>
+noremap <leader>t  <cmd>NvimTreeToggle<cr>
 noremap <leader>tf <cmd>NvimTreeFindFile<cr>

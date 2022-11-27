@@ -47,18 +47,21 @@ source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Shell plugins
+# Source shell plugins
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Aliases
+# Add app images to path
+export PATH=$PATH:$HOME/apps
+
+# Define aliases
 alias l="/usr/bin/ls --color=auto -F"
 alias ls="/usr/bin/ls --color=auto -Flh"
 alias la="/usr/bin/ls --color=auto -Flha"
 alias diff="/usr/bin/diff --color=always -r"
-alias grep="grep --with-filename --line-number --color=always"
-alias treel="tree -L 2"
-alias vim="~/app-images/nvim.appimage"
-alias vimdiff="vim -d"
+alias grep="/usr/bin/grep --with-filename --line-number --color=always"
+alias treel="/usr/bin/tree -L 2"
+alias vim="nvim.appimage"
+alias vimdiff="nvim.appimage -d"
 
-export EDITOR="~/app-images/nvim.appimage"
+export EDITOR="nvim.appimage"

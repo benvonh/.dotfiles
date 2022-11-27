@@ -26,10 +26,13 @@ set expandtab
 set shiftround
 set autoindent
 set smartindent
-set filetype
+"set filetype
 
 " backup
 set nobackup
 set noswapfile
 set undofile
 set undodir=~/.vim/undodir
+
+" others
+set completeopt=menu,menuone,noselect
