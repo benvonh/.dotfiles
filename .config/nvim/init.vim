@@ -82,6 +82,9 @@ call plug#begin('~/.vim/plugged')
     " dashboard
     Plug 'glepnir/dashboard-nvim'
 
+    " markdown previewer
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
     " file explorer
     Plug 'nvim-tree/nvim-tree.lua'
     Plug 'nvim-tree/nvim-web-devicons'
