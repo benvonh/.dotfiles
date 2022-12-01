@@ -42,17 +42,17 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.dotfiles/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
 
 # Source shell plugins
-source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.dotfiles/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add app images to path
-export PATH=$PATH:$HOME/apps
+export PATH=$PATH:$HOME/.dotfiles/app-images
 
 # Define aliases
 alias l="/usr/bin/ls --color=auto -F"
@@ -60,7 +60,8 @@ alias ls="/usr/bin/ls --color=auto -Flh"
 alias la="/usr/bin/ls --color=auto -Flha"
 alias diff="/usr/bin/diff --color=always -r"
 alias grep="/usr/bin/grep --with-filename --line-number --color=always"
-alias treel="/usr/bin/tree -L 2"
+alias tree="/usr/bin/tree -a"
+alias treel="/usr/bin/tree -aL 2"
 alias vim="nvim.appimage"
 alias vimdiff="nvim.appimage -d"
 
