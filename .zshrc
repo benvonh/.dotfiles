@@ -54,6 +54,9 @@ source ~/.dotfiles/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 # Add app images to path
 export PATH=$PATH:$HOME/.dotfiles/app-images
 
+# Set editor environment variable
+export EDITOR="nvim.appimage"
+
 # Define aliases
 alias l="/usr/bin/ls --color=auto -F"
 alias ls="/usr/bin/ls --color=auto -Flh"
@@ -63,6 +66,5 @@ alias grep="/usr/bin/grep --with-filename --line-number --color=always"
 alias tree="/usr/bin/tree -a"
 alias treel="/usr/bin/tree -aL 2"
 alias vim="nvim.appimage"
+alias vimdot="nvim.appimage ~/.config"
 alias vimdiff="nvim.appimage -d"
-
-export EDITOR="nvim.appimage"
