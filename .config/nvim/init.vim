@@ -1,6 +1,6 @@
-" -----------
-" SET OPTIONS
-" -----------
+" ------------------------------------------------------------------------------
+"                                   SET OPTIONS
+" ------------------------------------------------------------------------------
 
 " editor
 set number
@@ -13,7 +13,7 @@ set scrolloff=10
 set visualbell
 set termguicolors
 set signcolumn=yes
-set colorcolumn=120
+set colorcolumn=121
 
 " search
 set incsearch
@@ -30,7 +30,6 @@ set expandtab
 set shiftround
 set autoindent
 set smartindent
-"set filetype
 
 " backup
 set nobackup
@@ -41,9 +40,9 @@ set undodir=~/.vim/undodir
 " others
 set completeopt=menu,menuone,noselect
 
-" -----------
-" KEY MAPPING
-" -----------
+" ------------------------------------------------------------------------------
+"                                   KEY MAPPINGS
+" ------------------------------------------------------------------------------
 
 " exit insert mode
 inoremap kk <esc>
@@ -58,25 +57,22 @@ nnoremap <c-l> <c-w>l
 let mapleader=' '
 
 " basic commands
-nnoremap <leader>w :w<cr>
-nnoremap <leader>x :x<cr>
-nnoremap <leader>q :q!<cr>
-nnoremap <leader>s :xa<cr>
-nnoremap <leader>l :qa!<cr>
+nnoremap <leader>w :wa<cr>
+nnoremap <leader>q :qa<cr>
+nnoremap <leader>x :xa<cr>
 
 " telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>p <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 " nvim tree
-noremap <leader>t  <cmd>NvimTreeToggle<cr>
-noremap <leader>tf <cmd>NvimTreeFindFile<cr>
+nnoremap <leader>t <cmd>NvimTreeToggle<cr>
+nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
 
-" --------------
-" NEOVIM PLUGINS
-" --------------
+" ------------------------------------------------------------------------------
+"                                   VIM PLUGINS
+" ------------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
 
