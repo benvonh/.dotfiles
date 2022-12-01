@@ -40,4 +40,19 @@ fi
 
 ln -s $PWD/.zshrc $HOME/.zshrc
 
+if [[ ! -f $HOME/.local/share/nvim/site/autoload/plug.vim ]];
+then
+    echo "Would you like to install vim-plug? (Y/n) "
+    read -r
+
+    if [[ $REPLY =~ ^[Nn]$ ]];
+    then
+        echo "This neovim configuration requires vim-plug"
+    else
+        sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    fi
+fi
+
+echo
 echo "Done"
