@@ -4,16 +4,17 @@ My dotfiles.
 
 ## Dependencies
 
-- neovim (included as app image)
+- neovim (included app image)
     - `fd-find`
     - `nodejs`
     - `ripgrep`
     - `unzip`
     - `yarn`
 
-- ranger (install)
+- ranger (requires install)
 
-- zsh (install)
+- zsh (requires install)
+    - `tree`
 
 ## Install
 
