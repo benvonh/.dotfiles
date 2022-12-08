@@ -1,6 +1,8 @@
 lua << EOF
 
--- Set up nvim-cmp.
+require('mason').setup()
+require('mason-lspconfig').setup()
+
 local cmp = require'cmp'
 
 cmp.setup({
@@ -18,7 +20,7 @@ cmp.setup({
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
         ['<c-space>'] = cmp.mapping.complete(),
         ['<c-e>'] = cmp.mapping.abort(),
-        ['<cr>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<cr>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -28,7 +30,6 @@ cmp.setup({
     })
 })
 
--- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
         { name = 'cmp_git' },
@@ -37,13 +38,11 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = { { name = 'buffer' } }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
@@ -53,10 +52,21 @@ cmp.setup.cmdline(':', {
     })
 })
 
--- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['clangd'].setup {
+
+require('lspconfig')['clangd'].setup{
+    capabilities = capabilities
+}
+require('lspconfig')['sumneko_lua'].setup{
+    capabilities = capabilities
+}
+require('lspconfig')['pyright'].setup{
+    capabilities = capabilities
+}
+require('lspconfig')['bashls'].setup{
+    capabilities = capabilities
+}
+require('lspconfig')['grammarly'].setup{
     capabilities = capabilities
 }
 

@@ -21,4 +21,5 @@ Run the install script :)
 
 ## Uninstall
 
-Replace symbolic links under `~/.config/` and remove `~/.zshrc`. Cached and local files may remain from various apps.
+Replace symbolic links under `~/.config/` and remove `~/.zshrc`.
+Cached and local files may remain from various apps.
