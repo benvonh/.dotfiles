@@ -21,12 +21,12 @@ then
     if cat /etc/*-release | grep 'Ubuntu';
     then
         sudo apt update
-        sudo apt install fd-find nodejs ripgrep unzip yarn &> /dev/null
+        sudo apt install fd-find nodejs ripgrep unzip yarn tree &> /dev/null
         sudo apt install ranger zsh &> /dev/null
     elif cat /etc/*-release | grep 'Arch';
     then
         sudo pacman -Syy
-        sudo pacman -S fd nodejs ripgrep unzip yarn ranger zsh &> /dev/null
+        sudo pacman -S fd nodejs ripgrep unzip yarn tree ranger zsh &> /dev/null
     else
         echo "Could not identify Linux distro... skipping"
     fi
