@@ -67,19 +67,33 @@ nnoremap <c-l> <c-w>l
 let mapleader=' '
 
 " basic commands
-nnoremap <leader>w :w<cr>
-nnoremap <leader>x :x<cr>
-nnoremap <leader>q :q<cr>
-nnoremap <leader>c :wa<cr> :qa<cr>
+nnoremap <leader>w <cmd>w<cr>
+nnoremap <leader>x <cmd>x<cr>
+nnoremap <leader>s <cmd>wa<cr>
+nnoremap <leader>c <cmd>qa<cr>
+nnoremap <leader>z <cmd>wa<cr> <cmd>qa<cr>
+nnoremap <leader>q <cmd>bp<bar>sp<bar>bn<bar>bd<cr>
+
+" vim-plug
+nnoremap <leader>o <cmd>so%<cr>
+nnoremap <leader>u <cmd>PlugInstall<cr> <cmd>PlugUpdate<cr>
 
 " nvim tree
-nnoremap <leader>e <cmd>NvimTreeToggle<cr>
-nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
+nnoremap <leader>e  <cmd>NvimTreeToggle<cr>
+nnoremap <leader>te <cmd>NvimTreeFocus<cr>
+nnoremap <leader>tf <cmd>NvimTreeFindFile<cr>
+nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
 
 " telescope
 nnoremap <leader>p <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
+
+" trouble diagnostics
+nnoremap <leader>d <cmd>TroubleToggle<cr>
+
+" mason
+nnoremap <leader>m <cmd>Mason<cr>
 
 " ------------------------------------------------------------------------------
 "                                   VIM PLUGINS
@@ -89,9 +103,7 @@ call plug#begin('~/.vim/plugged')
 
     " colour scheme
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-
-    " dashboard
-    Plug 'glepnir/dashboard-nvim'
+    Plug 'navarasu/onedark.nvim'
 
     " markdown previewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
@@ -100,18 +112,23 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-tree/nvim-tree.lua'
     Plug 'nvim-tree/nvim-web-devicons'
 
+    " terminal
+    Plug 'akinsho/toggleterm.nvim', { 'tag': '*' }
+
+    " sessions
+    Plug 'rmagatti/auto-session'
+
+    " comments
+    Plug 'numToStr/Comment.nvim'
+
     " telescope
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-    " LSP
-    Plug 'folke/trouble.nvim'
-    Plug 'mfussenegger/nvim-dap'
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/mason.nvim'
-    Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
+    " snippet
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'L3MON4D3/LuaSnip', { 'tag': 'v1.1.0' }
 
     " completion
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -120,17 +137,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
 
-    " snippet
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'L3MON4D3/LuaSnip', { 'tag': 'v1.1.0' }
+    " LSP
+    Plug 'folke/trouble.nvim'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
 
     " status bar
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 
-    " terminal
-    Plug 'akinsho/toggleterm.nvim', { 'tag': '*' }
-
 call plug#end()
 
+" Default colour scheme
 colorscheme catppuccin
