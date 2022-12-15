@@ -38,6 +38,7 @@ set undofile
 set undodir=~/.vim/undodir
 
 " others
+set hidden
 set completeopt=menu,menuone,noselect
 
 " ------------------------------------------------------------------------------
@@ -50,22 +51,34 @@ inoremap kk <esc>
 " paste without yank
 vnoremap p "_dP
 
+" clear line
+nnoremap <c-x> 120x
+
 " centre after motion
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <c-u> <c-u>zz
 nnoremap <c-d> <c-d>zz
 
-" moving between panes
+" move between panes
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+" swap between panes
+nnoremap <a-h> <c-w>H
+nnoremap <a-j> <c-w>J
+nnoremap <a-k> <c-w>K
+nnoremap <a-l> <c-w>L
+
 " leader
 let mapleader=' '
 
 " basic commands
-nnoremap <leader>w :wa<cr>
-nnoremap <leader>q :qa<cr>
-nnoremap <leader>x :xa<cr>
+nnoremap <leader>w <cmd>w<cr>
+nnoremap <leader>x <cmd>x<cr>
+nnoremap <leader>s <cmd>wa<cr>
+nnoremap <leader>c <cmd>qa<cr>
+nnoremap <leader>z <cmd>wa<cr> <cmd>qa<cr>
+nnoremap <leader>q <cmd>bp<bar>sp<bar>bn<bar>bd<cr>

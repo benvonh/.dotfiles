@@ -57,39 +57,50 @@ nnoremap N Nzz
 nnoremap <c-u> <c-u>zz
 nnoremap <c-d> <c-d>zz
 
-" moving between panes
+" move between panes
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" move panes
+nnoremap <a-h> <c-w>H
+nnoremap <a-j> <c-w>J
+nnoremap <a-k> <c-w>K
+nnoremap <a-l> <c-w>L
+
+" resize panes
+nnoremap <c-left>  <c-w>>
+nnoremap <c-down>  <c-w>+
+nnoremap <c-up>    <c-w>-
+nnoremap <c-right> <c-w><
 
 " leader
 let mapleader=' '
 
 " basic commands
 nnoremap <leader>w <cmd>w<cr>
+nnoremap <leader>a <cmd>q<cr>
 nnoremap <leader>x <cmd>x<cr>
 nnoremap <leader>s <cmd>wa<cr>
 nnoremap <leader>c <cmd>qa<cr>
 nnoremap <leader>z <cmd>wa<cr> <cmd>qa<cr>
 nnoremap <leader>q <cmd>bp<bar>sp<bar>bn<bar>bd<cr>
 
-" vim-plug
-nnoremap <leader>o <cmd>so%<cr>
-nnoremap <leader>u <cmd>PlugInstall<cr> <cmd>PlugUpdate<cr>
-
 " nvim tree
-nnoremap <leader>e  <cmd>NvimTreeToggle<cr>
-nnoremap <leader>te <cmd>NvimTreeFocus<cr>
-nnoremap <leader>tf <cmd>NvimTreeFindFile<cr>
-nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
+nnoremap <leader>e <cmd>NvimTreeToggle<cr>
+nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
 
 " telescope
 nnoremap <leader>p <cmd>Telescope find_files<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>l <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>gs <cmd>Telescope git_status<cr>
+nnoremap <leader>gc <cmd>Telescope git_commits<cr>
+nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 
-" trouble diagnostics
+" LSP
+nnoremap <leader>r <cmd>LspRestart<cr>
 nnoremap <leader>d <cmd>TroubleToggle<cr>
 
 " mason
@@ -102,8 +113,11 @@ nnoremap <leader>m <cmd>Mason<cr>
 call plug#begin('~/.vim/plugged')
 
     " colour scheme
-    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'navarasu/onedark.nvim'
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+    " which key
+    Plug 'folke/which-key.nvim'
 
     " markdown previewer
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
@@ -121,35 +135,41 @@ call plug#begin('~/.vim/plugged')
     " comments
     Plug 'numToStr/Comment.nvim'
 
+    " indenting
+    Plug 'Yggdroot/indentLine'
+
     " telescope
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+    " tree sitter
+    Plug 'p00f/nvim-ts-rainbow'
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
     " snippet
-    Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'L3MON4D3/LuaSnip', { 'tag': 'v1.1.0' }
+    Plug 'saadparwaiz1/cmp_luasnip'
 
     " completion
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-nvim-lsp'
 
     " LSP
     Plug 'folke/trouble.nvim'
-    Plug 'mfussenegger/nvim-dap'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'mfussenegger/nvim-dap'
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
 
     " status bar
-    Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+    Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
-" Default colour scheme
+" default colour scheme
 colorscheme catppuccin

@@ -1,57 +1,5 @@
 lua << EOF
 
--- nvim-cmp
-local cmp = require('cmp')
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<c-f>'] = cmp.mapping.scroll_docs(4),
-        ['<c-e>'] = cmp.mapping.abort(),
-        ['<tab>'] = cmp.mapping.confirm({ select = false }),
-        ['<c-space>'] = cmp.mapping.complete(),
-    }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }, {
-        { name = 'buffer' },
-    })
-})
-
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' },
-    }, {
-        { name = 'buffer' },
-    })
-})
-
-cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = { { name = 'buffer' } }
-})
-
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
-})
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 -- mason
 require('mason').setup()
 
@@ -85,6 +33,8 @@ local on_attach = function(client, bufnr)
         vim.lsp.buf.format({ async = true })
     end, bufopts)
 end
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig')['clangd'].setup({
     on_attach = on_attach,

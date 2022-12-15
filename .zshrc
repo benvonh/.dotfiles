@@ -22,8 +22,8 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -48,8 +48,9 @@ source ~/.dotfiles/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
 
 # Source shell plugins
-source ~/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.dotfiles/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh-plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.dotfiles/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # Add app images to path
 export PATH=$PATH:$HOME/.dotfiles/app-images
