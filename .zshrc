@@ -24,6 +24,7 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 # autoload -Uz compinit
 # compinit
+autoload -U zmv
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate

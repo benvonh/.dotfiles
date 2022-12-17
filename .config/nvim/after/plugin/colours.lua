@@ -1,5 +1,4 @@
-lua << EOF
-
+-- catppuccin
 require('catppuccin').setup({
     integrations = {
         cmp = true,
@@ -29,5 +28,3 @@ require('catppuccin').setup({
         }
     }
 })
-
-EOF
