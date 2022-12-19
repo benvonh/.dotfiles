@@ -22,14 +22,17 @@ return require('packer').startup(function(use)
 
     -- sessions
     use 'rmagatti/auto-session'
+    use 'rmagatti/session-lens'
 
     -- better coding
     use 'windwp/nvim-autopairs'
     use 'numToStr/Comment.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
 
-    -- telescope
+    -- plenaries
     use 'nvim-lua/plenary.nvim'
+    use 'tanvirtin/vgit.nvim'
+    use 'ThePrimeagen/harpoon'
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
 
     -- tree sitter

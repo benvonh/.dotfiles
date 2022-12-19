@@ -60,11 +60,15 @@ export PATH=$PATH:$HOME/.dotfiles/app-images
 export EDITOR="nvim"
 
 # Define aliases
+alias du="/usr/bin/du -h --max-depth=1"
+
 alias l="/usr/bin/ls --color=auto -F"
 alias ls="/usr/bin/ls --color=auto -Flh"
-alias la="/usr/bin/ls --color=auto -Flha"
-alias diff="/usr/bin/diff --color=always -r"
+alias la="/usr/bin/ls --color=auto -FlhA"
+
 alias grep="/usr/bin/grep --with-filename --line-number --color=always"
+
 alias treel="/usr/bin/tree -L 2"
+
 alias vim="nvim"
 alias vimdiff="nvim -d"

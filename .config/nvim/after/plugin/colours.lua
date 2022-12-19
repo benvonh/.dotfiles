@@ -28,3 +28,6 @@ require('catppuccin').setup({
         }
     }
 })
+
+-- indent blankline
+vim.cmd [[ highlight IndentBlanklineContextChar guifg=#F38BA8 gui=nocombine]]

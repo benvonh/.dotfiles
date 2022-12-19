@@ -5,9 +5,10 @@ opt.wrap = false
 opt.mouse = 'a'
 opt.number = true
 opt.confirm = true
-opt.scrolloff = 8
+opt.scrolloff = 16
 
 -- visuals
+opt.pumheight = 16
 opt.cursorline = true
 opt.visualbell = true
 opt.signcolumn = 'yes'
@@ -37,10 +38,9 @@ opt.undofile = true
 opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 
 -- others
-opt.list = true
 opt.hidden = true
 opt.completeopt = 'menu,menuone,noselect'
 
--- disable netrw for nvim tree
+-- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
