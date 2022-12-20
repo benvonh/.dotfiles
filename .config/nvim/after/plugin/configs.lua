@@ -1,9 +1,11 @@
 -- file explorer
 local function nvim_tree_window_config()
-    local w = 90
-    local h = 30
-    local x = vim.api.nvim_get_option('columns') / 2 - w / 2
-    local y = vim.api.nvim_get_option('lines') / 2 - h / 2
+    local vim_w = vim.api.nvim_get_option('columns')
+    local vim_h = vim.api.nvim_get_option('lines')
+    local w = vim_w / 2
+    local h = vim_h / 2
+    local x = vim_w / 2 - w / 2
+    local y = vim_h / 2 - h / 2
 
     return {
         relative = 'editor',
@@ -78,7 +80,7 @@ require('Comment').setup({
 })
 
 require('indent_blankline').setup({
-    use_treesitter = true,
+    -- use_treesitter = true,
     space_char_blankline = ' ',
     show_current_context = true,
     show_current_context_start = false
@@ -121,7 +123,7 @@ require('lualine').setup({
         lualine_b = { 'branch', 'diff' },
         lualine_c = { 'filename', 'diagnostics' },
         lualine_x = { 'filesize', 'filetype' },
-        lualine_y = { 'progress', 'location' },
+        lualine_y = { 'location' },
         lualine_z = { session_name }
     },
     inactive_sections = {
@@ -133,4 +135,11 @@ require('lualine').setup({
         lualine_z = { }
     },
     extensions = { 'nvim-tree' }
+})
+
+-- scroll bar
+require('scrollbar').setup({
+    handle = {
+        color = '#585B70'
+    }
 })

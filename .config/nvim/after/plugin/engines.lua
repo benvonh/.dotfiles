@@ -128,12 +128,40 @@ cmp.setup.filetype('gitcommit', {
 })
 
 cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    preselect = cmp.PreselectMode.Insert,
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
+    mapping = cmp.mapping.preset.cmdline({
+        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        ['<tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item(select_opts)
+                else
+                    fallback()
+                end
+            end, {'i', 's'}
+        )
+    }),
     sources = { { name = 'buffer' } }
 })
 
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    preselect = cmp.PreselectMode.Insert,
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
+    mapping = cmp.mapping.preset.cmdline({
+        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        ['<tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item(select_opts)
+                else
+                    fallback()
+                end
+            end, {'i', 's'}
+        )
+    }),
     sources = cmp.config.sources(
         { { name = 'path' } },
         { { name = 'cmdline' } }

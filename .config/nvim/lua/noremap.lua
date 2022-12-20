@@ -1,8 +1,11 @@
+-- don't cut with paste
+vim.keymap.set('v', 'p', '"_dp')
+
 -- exit insert mode with esc
 vim.keymap.set('i', '<c-c>', '<esc>')
 
--- don't cut with paste
-vim.keymap.set('v', 'p', '"_dp')
+-- clear highlight
+vim.keymap.set('n', '<c-c>', '<cmd>nohl<cr>')
 
 -- why does this exist
 vim.keymap.set('n', 'J', '<nop>')

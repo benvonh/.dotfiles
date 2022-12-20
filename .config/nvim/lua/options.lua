@@ -16,7 +16,7 @@ opt.colorcolumn = { 81 }
 opt.termguicolors = true
 
 -- search
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 
 -- tabs

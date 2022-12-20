@@ -56,14 +56,9 @@ wk.register({
 -- file explorer
 wk.register({
     ['<leader>'] = {
-        e = { '<cmd>NvimTreeToggle<cr>',    'Toggle file explorer' }
+        e = { '<cmd>NvimTreeFindFile<cr>',    'Toggle file explorer' }
     }
 })
--- wk.register({
---     ['<leader>'] = {
---         v = { '<cmd>NvimTreeFindFile<cr>',  'Focus file in explorer' }
---     }
--- })
 
 -- plenaries
 wk.register({
