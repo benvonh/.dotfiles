@@ -35,25 +35,28 @@ return require('packer').startup(function(use)
     use 'ThePrimeagen/harpoon'
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
 
+    -- graphics
+    use 'folke/noice.nvim'
+    use 'folke/trouble.nvim'
+    use 'rcarriga/nvim-notify'
+    use 'MunifTanjim/nui.nvim'
+
     -- tree sitter
     use 'p00f/nvim-ts-rainbow'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- snippet
-    use { 'L3MON4D3/LuaSnip', tag = 'v1.1.0' }
     use 'saadparwaiz1/cmp_luasnip'
+    use { 'L3MON4D3/LuaSnip', tag = 'v1.1.0' }
 
     -- completion
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
 
     -- LSP
-    use 'folke/trouble.nvim'
-    use 'ray-x/lsp_signature.nvim'
     use 'neovim/nvim-lspconfig'
     use 'VonHeikemen/lsp-zero.nvim'
     use 'mfussenegger/nvim-dap'

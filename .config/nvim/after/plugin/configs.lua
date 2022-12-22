@@ -1,29 +1,5 @@
 -- file explorer
-local function nvim_tree_window_config()
-    local vim_w = vim.api.nvim_get_option('columns')
-    local vim_h = vim.api.nvim_get_option('lines')
-    local w = vim_w / 2
-    local h = vim_h / 2
-    local x = vim_w / 2 - w / 2
-    local y = vim_h / 2 - h / 2
-
-    return {
-        relative = 'editor',
-        border = 'rounded',
-        width = w,
-        height = h,
-        row = y,
-        col = x
-    }
-end
-
 require('nvim-tree').setup({
-    view = {
-        float = {
-            enable = true,
-            open_win_config = nvim_tree_window_config
-        }
-    },
     renderer = {
         icons = {
             glyphs = {
@@ -72,7 +48,19 @@ require('session-lens').setup({
 })
 
 -- better coding
-require('nvim-autopairs').setup()
+local cond = require('nvim-autopairs.conds')
+local Rule = require('nvim-autopairs.rule')
+local npairs = require('nvim-autopairs')
+
+npairs.setup({
+    map_c_w = true,
+    check_ts = true
+})
+
+-- npairs.add_rule(Rule('<', '>')
+--     :with_cr(true):with_del(true)
+--     :with_move(cond.is_bracket_line_move())
+-- )
 
 require('Comment').setup({
     opleader = { line = '<c-_>' },
@@ -86,10 +74,32 @@ require('indent_blankline').setup({
     show_current_context_start = false
 })
 
+vim.g.indent_blankline_char = '▏'
+
 -- plenaries
 require('vgit').setup()
+require('telescope').load_extension('noice')
 require('telescope').load_extension('session-lens')
 
+-- graphics
+require('trouble').setup()
+
+require('noice').setup({
+    lsp = {
+        override = {
+            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+            ['vim.lsp.util.stylize_markdown'] = true,
+            ['cmp.entry.get_documentation'] = true
+        }
+    },
+    presets = {
+        bottom_search = false,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = true
+    }
+})
 
 -- tree sitter
 require('nvim-treesitter.configs').setup({
@@ -109,28 +119,32 @@ require('bufferline').setup({
     options = {
         diagnostics = 'nvim_lsp',
         separator_style = 'slant',
+        offsets = {
+            {
+                filetype = 'NvimTree',
+                text = 'File Explorer',
+                text_align = 'center',
+                separator = true
+            }
+        }
     }
 })
-
-local function session_name()
-    return 'Session: ' .. require('auto-session-library').current_session_name()
-end
 
 require('lualine').setup({
     options = { theme = 'catppuccin' },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff' },
-        lualine_c = { 'filename', 'diagnostics' },
-        lualine_x = { 'filesize', 'filetype' },
-        lualine_y = { 'location' },
-        lualine_z = { session_name }
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'filetype' },
+        lualine_y = { 'filesize', 'location' },
+        lualine_z = { require('auto-session-library').current_session_name }
     },
     inactive_sections = {
         lualine_a = { },
         lualine_b = { },
-        lualine_c = { 'filename', 'diagnostics' },
-        lualine_x = { 'filesize', 'filetype' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'filetype' },
         lualine_y = { },
         lualine_z = { }
     },

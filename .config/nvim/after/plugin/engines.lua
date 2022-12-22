@@ -33,13 +33,6 @@ local kind_icons = {
     TypeParameter = ""
 }
 
-require('trouble').setup()
-
-require('lsp_signature').setup({
-    bind = true,
-    hint_enable = false
-})
-
 null_ls.setup({
     sources = {
         -- FIXME: Warning error - no treesitter cli
@@ -64,7 +57,7 @@ cmp.setup({
     },
     window = {
         completion = {
-            col_offset = -2,
+            col_offset = -3,
             side_padding = 1
         },
         documentation = cmp.config.window.bordered()
@@ -84,7 +77,7 @@ cmp.setup({
         end
     },
     mapping = cmp.mapping.preset.insert({
-        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        ['<cr>']  = cmp.mapping.confirm(),
         ['<c-d>'] = cmp.mapping.scroll_docs(4),
         ['<c-u>'] = cmp.mapping.scroll_docs(-4),
         ['<c-p>'] = cmp.mapping.select_prev_item(select_opts),
@@ -112,59 +105,18 @@ cmp.setup({
         )
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' }
+        { name = 'nvim_lsp', keyword_length = 1 },
+        { name = 'nvim_lua', keyword_length = 1 }
     }, {
-        { name = 'path' },
-        { name = 'buffer' },
-        { name = 'luasnip' }
+        { name = 'path', keyword_length = 1 },
+        { name = 'buffer', keyword_length = 1 },
+        { name = 'luasnip', keyword_length = 1 }
     })
 })
 
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources(
         { { name = 'buffer' } }
-    )
-})
-
-cmp.setup.cmdline({ '/', '?' }, {
-    preselect = cmp.PreselectMode.Insert,
-    completion = {
-        completeopt = 'menu,menuone,noinsert'
-    },
-    mapping = cmp.mapping.preset.cmdline({
-        ['<cr>']  = cmp.mapping.confirm({ select = true }),
-        ['<tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item(select_opts)
-                else
-                    fallback()
-                end
-            end, {'i', 's'}
-        )
-    }),
-    sources = { { name = 'buffer' } }
-})
-
-cmp.setup.cmdline(':', {
-    preselect = cmp.PreselectMode.Insert,
-    completion = {
-        completeopt = 'menu,menuone,noinsert'
-    },
-    mapping = cmp.mapping.preset.cmdline({
-        ['<cr>']  = cmp.mapping.confirm({ select = true }),
-        ['<tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item(select_opts)
-                else
-                    fallback()
-                end
-            end, {'i', 's'}
-        )
-    }),
-    sources = cmp.config.sources(
-        { { name = 'path' } },
-        { { name = 'cmdline' } }
     )
 })
 

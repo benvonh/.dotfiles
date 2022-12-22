@@ -9,22 +9,22 @@ local wk = require('which-key')
 -- basic commands
 wk.register({
     ['<leader>'] = {
-        w = { '<cmd>w<cr>',     'Write buffer' }
+        w = {
+            name = '+Write',
+            w = { '<cmd>w<cr>',     'Write buffer' },
+            a = { '<cmd>wa<cr>',    'Save all files' }
+        }
     }
 })
 wk.register({
     ['<leader>'] = {
-        W = { '<cmd>wa<cr>',    'Save all buffers' }
-    }
-})
-wk.register({
-    ['<leader>'] = {
-        q = { '<cmd>q<cr>',     'Quite buffers' }
-    }
-})
-wk.register({
-    ['<leader>'] = {
-        Q = { '<cmd>qa<cr>',    'Quite buffers' }
+        q = {
+            name = '+Quit',
+            q = { '<cmd>q<cr>',     'Quit buffer' },
+            a = { '<cmd>qa<cr>',    'Quit neovim' },
+            i = { '<cmd>q!<cr>',    'Force quit buffer' },
+            f = { '<cmd>qa!<cr>',   'Force quit neovim' }
+        }
     }
 })
 wk.register({
@@ -39,7 +39,10 @@ wk.register({
 })
 wk.register({
     ['<leader>'] = {
-        c = { '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>',   'Close and replace buffer' }
+        c = {
+            '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>',
+            'Close and replace buffer'
+        }
     }
 })
 wk.register({

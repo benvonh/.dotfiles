@@ -57,7 +57,7 @@ source ~/.dotfiles/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.p
 export PATH=$PATH:$HOME/.dotfiles/app-images
 
 # Set editor environment variable
-export EDITOR="nvim"
+export EDITOR="nvim-nightly"
 
 # Define aliases
 alias du="/usr/bin/du -h --max-depth=1"
@@ -70,5 +70,5 @@ alias grep="/usr/bin/grep --with-filename --line-number --color=always"
 
 alias treel="/usr/bin/tree -L 2"
 
-alias vim="nvim"
-alias vimdiff="nvim -d"
+alias vim="$EDITOR"
+alias vimdiff="$EDITOR -d"
