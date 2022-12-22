@@ -48,8 +48,8 @@ require('session-lens').setup({
 })
 
 -- better coding
-local cond = require('nvim-autopairs.conds')
 local Rule = require('nvim-autopairs.rule')
+local cond = require('nvim-autopairs.conds')
 local npairs = require('nvim-autopairs')
 
 npairs.setup({
@@ -57,10 +57,10 @@ npairs.setup({
     check_ts = true
 })
 
--- npairs.add_rule(Rule('<', '>')
---     :with_cr(true):with_del(true)
---     :with_move(cond.is_bracket_line_move())
--- )
+npairs.add_rule(Rule('template<', '>', 'cpp')
+    :with_cr(true):with_del(true)
+    :with_move(cond.is_bracket_line_move())
+)
 
 require('Comment').setup({
     opleader = { line = '<c-_>' },

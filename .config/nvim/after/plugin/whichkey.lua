@@ -95,7 +95,7 @@ wk.register({
 })
 wk.register({
     ['<leader>'] = {
-        p = { '<cmd>Telescope find_files<cr>',  'Find file (from dir)' }
+        p = { '<cmd>Telescope find_files<cr>',  'Find file (from directory)' }
     }
 })
 wk.register({
@@ -146,4 +146,7 @@ wk.register({
     }
 })
 
-wk.setup()
+wk.setup({
+    show_help = false,
+    show_keys = false
+})
