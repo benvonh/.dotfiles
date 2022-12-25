@@ -13,11 +13,9 @@ vim.keymap.set('n', '<c-c>', '<cmd>nohl<cr>')
 -- why does this exist
 vim.keymap.set('n', 'J', '<nop>')
 
--- centre after motions
+-- centre after moving to search
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
-vim.keymap.set('n', '<c-u>', '<c-u>zz')
-vim.keymap.set('n', '<c-d>', '<c-d>zz')
 
 -- move between panes
 vim.keymap.set('n', '<c-h>', '<c-w>h')

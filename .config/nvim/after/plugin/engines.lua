@@ -6,31 +6,31 @@ local null_ls = require('null-ls')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "פּ",
-    Event = "",
-    Operator = "",
-    TypeParameter = ""
+    Text = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = '',
+    Variable = '',
+    Class = 'ﴯ',
+    Interface = '',
+    Module = '',
+    Property = 'ﰠ',
+    Unit = '',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = 'פּ',
+    Event = '',
+    Operator = '',
+    TypeParameter = ''
 }
 
 null_ls.setup({
@@ -56,24 +56,16 @@ cmp.setup({
         completeopt = 'menu,menuone,noinsert'
     },
     window = {
-        completion = {
-            col_offset = -3,
-            side_padding = 1
-        },
         documentation = cmp.config.window.bordered()
     },
     formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(_, vim_item)
-            vim_item.kind = string.format(
-                '%s %s',
-                kind_icons[vim_item.kind],
-                vim_item.kind
-            )
-            local strings = vim.split(vim_item.kind, '%s', { trimempty = true })
-            vim_item.kind = strings[1]
-            vim_item.menu = '    (' .. strings[2] .. ')'
-            return vim_item
+        fields = { 'abbr', 'kind' },
+        format = function(_, item)
+            if string.len(item.abbr) > 32 then
+                item.abbr = string.sub(item.abbr, 1, 29) .. '...'
+            end
+            item.kind = ' ' .. kind_icons[item.kind] .. ' ' .. item.kind
+            return item
         end
     },
     mapping = cmp.mapping.preset.insert({
@@ -109,15 +101,9 @@ cmp.setup({
         { name = 'nvim_lua', keyword_length = 1 }
     }, {
         { name = 'path', keyword_length = 1 },
-        { name = 'buffer', keyword_length = 1 },
+        -- { name = 'buffer', keyword_length = 1 },
         { name = 'luasnip', keyword_length = 1 }
     })
-})
-
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources(
-        { { name = 'buffer' } }
-    )
 })
 
 lsp.preset('lsp-compe')

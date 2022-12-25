@@ -4,7 +4,6 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- colour scheme
-    use 'navarasu/onedark.nvim'
     use { 'catppuccin/nvim', as = 'catppuccin' }
 
     -- which key
@@ -21,10 +20,12 @@ return require('packer').startup(function(use)
     use { 'akinsho/toggleterm.nvim', tag = '*' }
 
     -- sessions
-    use 'rmagatti/auto-session'
+   use 'rmagatti/auto-session'
     use 'rmagatti/session-lens'
 
     -- better coding
+    use 'p00f/nvim-ts-rainbow'
+    use 'folke/todo-comments.nvim'
     use 'windwp/nvim-autopairs'
     use 'numToStr/Comment.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
@@ -42,7 +43,6 @@ return require('packer').startup(function(use)
     use 'MunifTanjim/nui.nvim'
 
     -- tree sitter
-    use 'p00f/nvim-ts-rainbow'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- snippet
@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'
 
     -- LSP
+    use 'ray-x/lsp_signature.nvim'
     use 'neovim/nvim-lspconfig'
     use 'VonHeikemen/lsp-zero.nvim'
     use 'mfussenegger/nvim-dap'
@@ -65,7 +66,6 @@ return require('packer').startup(function(use)
     use 'jose-elias-alvarez/null-ls.nvim'
 
     -- status bar
-    use { 'akinsho/bufferline.nvim', tag = 'v3.*' }
     use 'nvim-lualine/lualine.nvim'
 
     -- scroll bar

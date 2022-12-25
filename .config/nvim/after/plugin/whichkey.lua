@@ -63,7 +63,12 @@ wk.register({
     }
 })
 
--- plenaries
+-- plenaries (w/ better coding)
+wk.register({
+    ['<leader>'] = {
+        t = { '<cmd>TodoTelescope<cr>',         'Show TODO' }
+    }
+})
 wk.register({
     ['<leader>'] = {
         s = {
@@ -95,7 +100,10 @@ wk.register({
 })
 wk.register({
     ['<leader>'] = {
-        p = { '<cmd>Telescope find_files<cr>',  'Find file (from directory)' }
+        p = {
+            '<cmd>Telescope find_files cwd=~ hidden=true no_ignore=true<cr>',
+            'Find file (from directory)'
+        }
     }
 })
 wk.register({
@@ -121,10 +129,9 @@ wk.register({
             c = { '<cmd>Telescope git_commits<cr>',     'Show commits' },
             b = { '<cmd>Telescope git_branches<cr>',    'Show branches' },
             d = { git.buffer_diff_preview,              'Diff preview' },
-            h = { git.buffer_history_preview,           'History preview' },
+            h = { git.buffer_hunk_preview,              'Hunk preview' },
             t = { git.toggle_diff_preference,           'Toggle preference' },
-            l = { git.toggle_live_gutter,               'Toggle live gutter' },
-            p = { git.project_diff_preview,             'Project diff preview' }
+            l = { git.toggle_live_gutter,               'Toggle live gutter' }
         }
     }
 })

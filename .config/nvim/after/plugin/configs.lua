@@ -1,7 +1,11 @@
 -- file explorer
 require('nvim-tree').setup({
     renderer = {
+        indent_markers = {
+            enable = true
+        },
         icons = {
+            git_placement = 'after',
             glyphs = {
                 folder = {
                     arrow_open = '',
@@ -9,19 +13,17 @@ require('nvim-tree').setup({
                 }
             }
         }
+    },
+    diagnostics = {
+        enable = true
     }
 })
 
 -- terminal
 require('toggleterm').setup({
     open_mapping = [[<c-t>]],
-    direction = 'horizontal',
-    size = 24
-    -- float_opts = {
-    --     border = 'curved',
-    --     height = 32,
-    --     width = 128
-    -- }
+    direction = 'vertical',
+    size = 80
 })
 
 function _G.set_terminal_keybinding()
@@ -37,7 +39,7 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keybinding()')
 -- sessions
 require('auto-session').setup({
     auto_save_enabled = true,
-    auto_restore_enabled = true,
+    auto_restore_enabled = false,
     auto_session_suppress_dirs = nil,
     auto_session_use_git_branch = false,
     auto_session_create_enabled = false
@@ -48,6 +50,8 @@ require('session-lens').setup({
 })
 
 -- better coding
+require('todo-comments').setup()
+
 local Rule = require('nvim-autopairs.rule')
 local cond = require('nvim-autopairs.conds')
 local npairs = require('nvim-autopairs')
@@ -68,16 +72,23 @@ require('Comment').setup({
 })
 
 require('indent_blankline').setup({
-    -- use_treesitter = true,
+    char = '▏',
+    context_char = '▏',
+    use_treesitter = true,
     space_char_blankline = ' ',
     show_current_context = true,
     show_current_context_start = false
 })
 
-vim.g.indent_blankline_char = '▏'
-
 -- plenaries
-require('vgit').setup()
+require('vgit').setup({
+    settings = {
+        scene = {
+            diff_preference = 'split'
+        }
+    }
+})
+
 require('telescope').load_extension('noice')
 require('telescope').load_extension('session-lens')
 
@@ -85,21 +96,35 @@ require('telescope').load_extension('session-lens')
 require('trouble').setup()
 
 require('noice').setup({
-    lsp = {
-        override = {
-            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-            ['vim.lsp.util.stylize_markdown'] = true,
-            ['cmp.entry.get_documentation'] = true
-        }
-    },
     presets = {
         bottom_search = false,
         command_palette = true,
         long_message_to_split = true,
         inc_rename = false,
         lsp_doc_border = true
+    },
+    lsp = {
+        override = {
+            ["cmp.entry.get_documentation"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true
+        }
     }
 })
+
+local noice_lsp = require('noice.lsp')
+
+vim.keymap.set('n', '<c-f', function()
+    if not noice_lsp.scroll(4) then
+        return '<c-f>'
+    end
+end, { silent = true, expr = true })
+
+vim.keymap.set('n', '<c-b', function()
+    if not noice_lsp.scroll(-4) then
+        return '<c-b>'
+    end
+end, { silent = true, expr = true })
 
 -- tree sitter
 require('nvim-treesitter.configs').setup({
@@ -108,28 +133,11 @@ require('nvim-treesitter.configs').setup({
         additional_vim_regex_highlighting = false
     },
     rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil
+        enable = true
     }
 })
 
 -- status bar
-require('bufferline').setup({
-    options = {
-        diagnostics = 'nvim_lsp',
-        separator_style = 'slant',
-        offsets = {
-            {
-                filetype = 'NvimTree',
-                text = 'File Explorer',
-                text_align = 'center',
-                separator = true
-            }
-        }
-    }
-})
-
 require('lualine').setup({
     options = { theme = 'catppuccin' },
     sections = {
@@ -155,5 +163,8 @@ require('lualine').setup({
 require('scrollbar').setup({
     handle = {
         color = '#585B70'
+    },
+    handlers = {
+        cursor = false
     }
 })

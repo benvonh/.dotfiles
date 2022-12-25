@@ -3,8 +3,13 @@ require('catppuccin').setup({
     integrations = {
         cmp = true,
         mason = true,
+        noice = true,
+        notify = true,
+        harpoon = true,
         nvimtree = true,
         telescope = true,
+        which_key = true,
+        ts_rainbow = true,
         treesitter = true,
         lsp_trouble = true,
         dap = {
@@ -17,17 +22,14 @@ require('catppuccin').setup({
                 errors = { "italic" },
                 hints = { "italic" },
                 warnings = { "italic" },
-                information = { "italic" },
+                information = { "italic" }
             },
             underlines = {
                 errors = { "underline" },
                 hints = { "underline" },
                 warnings = { "underline" },
-                information = { "underline" },
+                information = { "underline" }
             }
         }
     }
 })
-
--- indent blankline
-vim.cmd [[ highlight IndentBlanklineContextChar guifg=#F38BA8 gui=nocombine]]
