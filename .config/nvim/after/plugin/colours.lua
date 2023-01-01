@@ -1,5 +1,19 @@
--- catppuccin
-require('catppuccin').setup({
+-- tomorrow
+require('tomorrow').setup({
+    styles = {
+        comments = { 'italic' },
+        conditionals = { 'italic' },
+        loops = {},
+        functions = { 'italic' },
+        keywords = {},
+        strings = { 'bold' },
+        variables = {},
+        numbers = { 'bold' },
+        booleans = { 'bold' },
+        properties = { 'bold' },
+        types = {},
+        operators = {}
+    },
     integrations = {
         cmp = true,
         mason = true,
@@ -19,16 +33,16 @@ require('catppuccin').setup({
         native_lsp = {
             enabled = true,
             virtual_text = {
-                errors = { "italic" },
-                hints = { "italic" },
-                warnings = { "italic" },
-                information = { "italic" }
+                errors = { 'italic' },
+                hints = { 'italic' },
+                warnings = { 'italic' },
+                information = { 'italic' }
             },
             underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" }
+                errors = { 'underline' },
+                hints = { 'underline' },
+                warnings = { 'underline' },
+                information = { 'underline' }
             }
         }
     }

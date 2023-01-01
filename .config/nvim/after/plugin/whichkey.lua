@@ -56,7 +56,7 @@ wk.register({
     }
 })
 
--- file explorer
+-- file xplorer
 wk.register({
     ['<leader>'] = {
         e = { '<cmd>NvimTreeFindFile<cr>',    'Toggle file explorer' }

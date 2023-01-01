@@ -4,4 +4,4 @@ require('options')
 require('plugins')
 
 -- default colour scheme
-vim.cmd.colorscheme('catppuccin')
+vim.cmd.colorscheme('tomorrow')

@@ -56,15 +56,17 @@ cmp.setup({
         completeopt = 'menu,menuone,noinsert'
     },
     window = {
+        -- completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered()
     },
     formatting = {
         fields = { 'abbr', 'kind' },
         format = function(_, item)
+            item.abbr = item.abbr:gsub('%b()', '')
             if string.len(item.abbr) > 32 then
                 item.abbr = string.sub(item.abbr, 1, 29) .. '...'
             end
-            item.kind = ' ' .. kind_icons[item.kind] .. ' ' .. item.kind
+            item.kind = kind_icons[item.kind] .. ' ' .. item.kind
             return item
         end
     },
@@ -101,7 +103,7 @@ cmp.setup({
         { name = 'nvim_lua', keyword_length = 1 }
     }, {
         { name = 'path', keyword_length = 1 },
-        -- { name = 'buffer', keyword_length = 1 },
+        { name = 'buffer', keyword_length = 1 },
         { name = 'luasnip', keyword_length = 1 }
     })
 })

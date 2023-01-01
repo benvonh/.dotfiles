@@ -4,7 +4,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- colour scheme
-    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use { 'benvonh/tomorrow-night.nvim', as = 'tomorrow' }
 
     -- which key
     use 'folke/which-key.nvim'
@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
     use { 'akinsho/toggleterm.nvim', tag = '*' }
 
     -- sessions
-   use 'rmagatti/auto-session'
+    use 'rmagatti/auto-session'
     use 'rmagatti/session-lens'
 
     -- better coding

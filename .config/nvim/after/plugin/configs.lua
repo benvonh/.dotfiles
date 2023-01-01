@@ -1,21 +1,24 @@
 -- file explorer
 require('nvim-tree').setup({
+    open_on_setup = true,
+    open_on_setup_file = true,
     renderer = {
         indent_markers = {
-            enable = true
+            enable = true,
         },
         icons = {
             git_placement = 'after',
-            glyphs = {
-                folder = {
-                    arrow_open = '',
-                    arrow_closed = ''
-                }
+            show = {
+                folder_arrow = false
             }
         }
     },
     diagnostics = {
-        enable = true
+        enable = true,
+        show_on_dirs = true
+    },
+    git = {
+        ignore = false
     }
 })
 
@@ -39,7 +42,7 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keybinding()')
 -- sessions
 require('auto-session').setup({
     auto_save_enabled = true,
-    auto_restore_enabled = false,
+    auto_restore_enabled = true,
     auto_session_suppress_dirs = nil,
     auto_session_use_git_branch = false,
     auto_session_create_enabled = false
@@ -105,22 +108,22 @@ require('noice').setup({
     },
     lsp = {
         override = {
-            ["cmp.entry.get_documentation"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true
+            ['cmp.entry.get_documentation'] = true,
+            ['vim.lsp.util.stylize_markdown'] = true,
+            ['vim.lsp.util.convert_input_to_markdown_lines'] = true
         }
     }
 })
 
 local noice_lsp = require('noice.lsp')
 
-vim.keymap.set('n', '<c-f', function()
+vim.keymap.set('n', '<c-f>', function()
     if not noice_lsp.scroll(4) then
         return '<c-f>'
     end
 end, { silent = true, expr = true })
 
-vim.keymap.set('n', '<c-b', function()
+vim.keymap.set('n', '<c-b>', function()
     if not noice_lsp.scroll(-4) then
         return '<c-b>'
     end
@@ -139,20 +142,25 @@ require('nvim-treesitter.configs').setup({
 
 -- status bar
 require('lualine').setup({
-    options = { theme = 'catppuccin' },
+    options = {
+        theme = 'tomorrow',
+        globalstatus = true,
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '|', right = '|' }
+    },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_b = { 'branch', 'diff' },
         lualine_c = { 'filename' },
-        lualine_x = { 'filetype' },
-        lualine_y = { 'filesize', 'location' },
-        lualine_z = { require('auto-session-library').current_session_name }
+        lualine_x = { 'filesize' },
+        lualine_y = { 'diagnostics' },
+        lualine_z = { 'location' }
     },
     inactive_sections = {
         lualine_a = { },
         lualine_b = { },
         lualine_c = { 'filename' },
-        lualine_x = { 'filetype' },
+        lualine_x = { 'filesize' },
         lualine_y = { },
         lualine_z = { }
     },
@@ -162,7 +170,7 @@ require('lualine').setup({
 -- scroll bar
 require('scrollbar').setup({
     handle = {
-        color = '#585B70'
+        color = '#969896'
     },
     handlers = {
         cursor = false
