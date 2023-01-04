@@ -1,7 +1,17 @@
-local cmp = require('cmp')
-local lsp = require('lsp-zero')
-local luasnip = require('luasnip')
-local null_ls = require('null-ls')
+local function try_require(module)
+    local ok, mod = pcall(require, module)
+
+    if not ok then
+        print('Failed to find ' .. module)
+        return
+    end
+
+    return mod
+end
+
+local cmp = try_require('cmp')
+local lsp = try_require('lsp-zero')
+local luasnip = try_require('luasnip')
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
@@ -30,43 +40,24 @@ local kind_icons = {
     Struct = 'פּ',
     Event = '',
     Operator = '',
-    TypeParameter = ''
+    TypeParameter = '',
 }
 
-null_ls.setup({
-    sources = {
-        -- FIXME: Warning error - no treesitter cli
-        -- null_ls.builtins.completion.luasnip,
-        -- null_ls.builtins.diagnostics.zsh,
-        -- null_ls.builtins.diagnostics.flake8,
-        -- null_ls.builtins.diagnostics.pylint,
-        -- null_ls.builtins.diagnostics.chktex,
-        -- null_ls.builtins.diagnostics.cppcheck
-    }
-})
-
 cmp.setup({
-    preselect = cmp.PreselectMode.Insert,
+    --preselect = cmp.PreselectMode.Insert,
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
         end
     },
-    completion = {
-        completeopt = 'menu,menuone,noinsert'
-    },
     window = {
-        -- completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered()
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     formatting = {
-        fields = { 'abbr', 'kind' },
+        fields = { 'kind', 'abbr' },
         format = function(_, item)
-            item.abbr = item.abbr:gsub('%b()', '')
-            if string.len(item.abbr) > 32 then
-                item.abbr = string.sub(item.abbr, 1, 29) .. '...'
-            end
-            item.kind = kind_icons[item.kind] .. ' ' .. item.kind
+            item.kind = kind_icons[item.kind]
             return item
         end
     },
@@ -96,16 +87,41 @@ cmp.setup({
                     fallback()
                 end
             end, {'i', 's'}
-        )
+        ),
     }),
     sources = cmp.config.sources({
+        { name = 'nvim_lua', keyword_length = 1 },
         { name = 'nvim_lsp', keyword_length = 1 },
-        { name = 'nvim_lua', keyword_length = 1 }
     }, {
-        { name = 'path', keyword_length = 1 },
-        { name = 'buffer', keyword_length = 1 },
-        { name = 'luasnip', keyword_length = 1 }
-    })
+        { name = 'path', keyword_length = 2 },
+        { name = 'buffer', keyword_length = 2 },
+        { name = 'luasnip', keyword_length = 2 },
+    }),
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+    sources = {
+        { name = 'buffer' }
+    },
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    }),
 })
 
 lsp.preset('lsp-compe')

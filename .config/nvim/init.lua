@@ -1,7 +1,6 @@
-require('autocmd')
-require('keymaps')
-require('options')
-require('plugins')
+require('user.options')
+require('user.keymaps')
+require('user.plugins')
+require('user.colours')
 
--- default colour scheme
-vim.cmd.colorscheme('tomorrow')
+vim.cmd.colorscheme('catppuccin')

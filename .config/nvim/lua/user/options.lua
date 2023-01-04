@@ -2,21 +2,22 @@ local opt = vim.opt
 
 -- editor
 opt.wrap = false
-opt.mouse = 'a'
-opt.number = true
 opt.confirm = true
 opt.scrolloff = 16
+opt.splitbelow = true
+opt.splitright = true
 
 -- visuals
-opt.pumheight = 16
+opt.number = true
+opt.pumheight = 8
 opt.cursorline = true
 opt.visualbell = true
 opt.signcolumn = 'yes'
-opt.colorcolumn = { 81 }
+opt.colorcolumn = { 120 }
 opt.termguicolors = true
 
 -- search
-opt.hlsearch = true
+opt.hlsearch = false
 opt.incsearch = true
 
 -- tabs
@@ -31,16 +32,18 @@ opt.shiftround = true
 opt.autoindent = true
 opt.smartindent = true
 
--- backup
+-- history
 opt.backup = false
 opt.swapfile = false
 opt.undofile = true
 opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 
 -- others
-opt.hidden = true
+opt.timeoutlen = 500
+opt.mouse = 'a'
+opt.clipboard = 'unnamedplus'
 opt.completeopt = 'menu,menuone,noselect'
 
--- disable netrw
+-- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
