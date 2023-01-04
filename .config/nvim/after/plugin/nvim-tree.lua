@@ -6,8 +6,6 @@ if not ok then
 end
 
 tree.setup({
-    open_on_setup = true,
-    open_on_setup_file = true,
     view = {
         mappings = {
             list = {

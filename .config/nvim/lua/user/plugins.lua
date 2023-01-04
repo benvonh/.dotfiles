@@ -40,14 +40,6 @@ return packer.startup(function(use)
     -- colour scheme
     use { 'catppuccin/nvim', as = 'catppuccin' }
 
-    -- file explorer
-    use { 'nvim-tree/nvim-tree.lua',
-        requires = { 'nvim-tree/nvim-web-devicons' } }
-
-    -- telescope
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { 'nvim-lua/plenary.nvim' } }
-
     -- lsp + cmp
     use { 'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -69,10 +61,30 @@ return packer.startup(function(use)
     }
 
     -- tree sitter
-    use { 'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate<cr>' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = '<cmd>TSUpdate<cr>'
+    }
+
+    -- file explorer
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+
+    -- telescope
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
 
     -- key binding
     use 'folke/which-key.nvim'
+
+    -- better coding
+    use 'windwp/nvim-autopairs'
+    use 'numToStr/Comment.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- bootstrap
     if PACKER_BOOTSTRAP then

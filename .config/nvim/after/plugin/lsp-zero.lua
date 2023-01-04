@@ -3,7 +3,7 @@ local function try_require(module)
 
     if not ok then
         print('Failed to find ' .. module)
-        return
+        return nil
     end
 
     return mod
@@ -12,6 +12,10 @@ end
 local cmp = try_require('cmp')
 local lsp = try_require('lsp-zero')
 local luasnip = try_require('luasnip')
+
+if not (cmp and lsp and luasnip) then
+    return
+end
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
@@ -93,9 +97,9 @@ cmp.setup({
         { name = 'nvim_lua', keyword_length = 1 },
         { name = 'nvim_lsp', keyword_length = 1 },
     }, {
-        { name = 'path', keyword_length = 2 },
-        { name = 'buffer', keyword_length = 2 },
-        { name = 'luasnip', keyword_length = 2 },
+        { name = 'path', keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 3 },
     }),
 })
 
