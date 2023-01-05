@@ -47,3 +47,6 @@ opt.completeopt = 'menu,menuone,noselect'
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- neovim auto-session options
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,winsize,winpos'

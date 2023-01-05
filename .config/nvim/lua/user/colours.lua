@@ -23,13 +23,13 @@ cat.setup({
     color_overrides = {
         mocha = { pink = '#FAB387' },
     },
-    custom_highlights = {},
     integrations = {
         cmp = true,
-        gitsigns = true,
+        mason = true,
         nvimtree = true,
+        which_key = true,
         telescope = true,
-        notify = false,
-        mini = false,
+        treesitter = true,
+        native_lsp = { enabled = true },
     },
 })

@@ -48,7 +48,6 @@ local kind_icons = {
 }
 
 cmp.setup({
-    --preselect = cmp.PreselectMode.Insert,
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -103,14 +102,12 @@ cmp.setup({
     }),
 })
 
--- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
     sources = {
         { name = 'buffer' }
     },
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -118,7 +115,6 @@ cmp.setup.cmdline({ '/', '?' }, {
     },
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
